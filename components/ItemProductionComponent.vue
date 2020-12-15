@@ -5,7 +5,15 @@
                 <v-card elevation="1" width="20em">
                     <v-card-title>{{ formattedRequestedAmountPerMinute }} "{{ item.name }}" per minute</v-card-title>
 
-                    <v-card-text>
+                    <v-card-text v-if="itemProduction.collectedByHand === true">
+                        <v-row>
+                            <v-col>
+                                This item must be collected by hand
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+
+                    <v-card-text v-if="itemProduction.collectedByHand === false">
                         <v-row>
                             <v-col>
                                 <v-select v-model="itemProduction.recipe" label="Recipe"
@@ -57,7 +65,7 @@
 <script>
 import {DATA} from '../src/SatisfactoryDataAccess';
 import {ItemProduction} from '../src/ItemProduction';
-import {RequestResolver} from '../src/RequestResolver';
+import {calculateItemProduction} from '../src/Tools';
 
 export default {
     name: 'ItemProductionComponent',
@@ -73,12 +81,12 @@ export default {
 
     watch: {
         'itemProduction.recipe': function() {
-            let requestResolver = new RequestResolver(DATA);
-            requestResolver.updateItemProduction(this.itemProduction);
+            // TODO reference providedItems here
+            calculateItemProduction(this.itemProduction);
         },
         'itemProduction.building': function() {
-            let requestResolver = new RequestResolver(DATA);
-            requestResolver.updateItemProduction(this.itemProduction);
+            // TODO reference providedItems here
+            calculateItemProduction(this.itemProduction);
         }
     },
 
