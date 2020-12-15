@@ -1,19 +1,23 @@
 
 
 <template>
-  <div>
-    <v-row justify="center" align="center">
-      <v-col>
-        <v-select v-model="selectedItem" :items="items" item-text="name" item-value="id"></v-select>
-        <v-text-field v-model="requestedAmountPerMinute" label="Amount per minute"></v-text-field>
-      </v-col>
-    </v-row>
-    <v-row v-if="itemProduction">
-      <v-col>
-        <ItemProductionComponent v-bind:itemProduction="itemProduction"></ItemProductionComponent>
-      </v-col>
-    </v-row>
-  </div>
+  <v-row>
+    <v-col cols="auto">
+      <v-select v-model="selectedItem" label="Item" :items="items" item-text="name" item-value="id" width="10em"></v-select>
+      <v-text-field v-model="requestedAmountPerMinute" label="Amount per minute" width="10em"></v-text-field>
+    </v-col>
+    <v-col>
+      <v-row justify="center" align="center">
+        <v-col>
+        </v-col>
+      </v-row>
+      <v-row v-if="itemProduction">
+        <v-col>
+          <ItemProductionComponent v-bind:itemProduction="itemProduction"></ItemProductionComponent>
+        </v-col>
+      </v-row>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
