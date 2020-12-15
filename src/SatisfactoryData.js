@@ -271,6 +271,51 @@ export const SatisfactoryData = {
             ]
         },
         {
+            "id": "screw",
+            "name": "Screw",
+            "recipes": [
+                {
+                    "id": "screw",
+                    "name": "Screw",
+                    "production_time": 6,
+                    "amount": 4,
+                    "ingredients": [
+                        {
+                            "item": "iron_rod",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "casted_screw",
+                    "name": "Casted Screw",
+                    "production_time": 24,
+                    "amount": 20,
+                    "ingredients": [
+                        {
+                            "item": "iron_ingot",
+                            "amount": 5
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "steel_screw",
+                    "name": "Steel Screw",
+                    "production_time": 12,
+                    "amount": 52,
+                    "ingredients": [
+                        {
+                            "item": "steel_beam",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                }
+            ]
+        },
+        {
             "id": "steel_ingot",
             "name": "Steel Ingot",
             "recipes": [
@@ -286,6 +331,44 @@ export const SatisfactoryData = {
                         },
                         {
                             "item": "coal",
+                            "amount": 3
+                        }
+                    ],
+                    "buildings": ["foundry"]
+                }
+            ]
+        },
+        {
+            "id": "steel_beam",
+            "name": "Steel Beam",
+            "recipes": [
+                {
+                    "id": "steel_beam",
+                    "name": "Steel Beam",
+                    "production_time": 4,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "steel_ingot",
+                            "amount": 4
+                        }
+                    ],
+                    "buildings": ["foundry"]
+                }
+            ]
+        },
+        {
+            "id": "steel_pipe",
+            "name": "Steel Pipe",
+            "recipes": [
+                {
+                    "id": "steel_pipe",
+                    "name": "Steel Pipe",
+                    "production_time": 6,
+                    "amount": 2,
+                    "ingredients": [
+                        {
+                            "item": "steel_ingot",
                             "amount": 3
                         }
                     ],
