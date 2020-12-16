@@ -1,8 +1,9 @@
 <template>
   <v-row>
     <v-col cols="2">
-      <v-select v-model="selectedItem" label="Item" :items="items" item-text="name" item-value="id"></v-select>
+      <v-autocomplete v-model="selectedItem" label="Item" :items="items" item-text="name" item-value="id"></v-autocomplete>
       <v-text-field v-model="requestedAmountPerMinute" label="Amount per minute"></v-text-field>
+      <v-autocomplete v-model="providedItems" label="Provided items" :items="items" item-text="name" item-value="id" multiple chips deletable-chips small-chips></v-autocomplete>
     </v-col>
     <v-col>
       <v-row justify="center" align="center">
@@ -11,7 +12,7 @@
       </v-row>
       <v-row v-if="itemProduction">
         <v-col>
-          <ItemProductionComponent v-bind:itemProduction="itemProduction"></ItemProductionComponent>
+          <ItemProductionComponent v-bind:itemProduction="itemProduction" v-bind:providedItems="providedItems"></ItemProductionComponent>
         </v-col>
       </v-row>
     </v-col>
@@ -35,6 +36,7 @@ export default {
     return {
       selectedItem: '',
       requestedAmountPerMinute: 60,
+      providedItems: [],
       itemProduction: null,
       buildings: Array.from(DATA.buildings.values()),
       items: Array.from(DATA.items.values())
@@ -47,12 +49,15 @@ export default {
       }
       let itemRequest  = new ItemRequest(this.selectedItem, parseFloat(this.requestedAmountPerMinute));
       let itemProduction = createNewItemProduction(itemRequest);
-      calculateItemProduction(itemProduction);
+      calculateItemProduction(itemProduction, this.providedItems);
       this.itemProduction = itemProduction;
     },
     requestedAmountPerMinute: function(newValue) {
       this.itemProduction.setRequestedAmountPerMinute = parseFloat(newValue);
-      calculateItemProduction(this.itemProduction);
+      calculateItemProduction(this.itemProduction, this.providedItems);
+    },
+    providedItems: function(newValue) {
+      calculateItemProduction(this.itemProduction, newValue)
     }
   }
 }

@@ -8,12 +8,21 @@
                     <v-card-text v-if="itemProduction.collectedByHand === true">
                         <v-row>
                             <v-col>
-                                This item must be collected by hand
+                                This item must be collected by hand.
                             </v-col>
                         </v-row>
                     </v-card-text>
 
-                    <v-card-text v-if="itemProduction.collectedByHand === false">
+                    <v-card-text v-if="itemProduction.provided === true">
+                        <v-row>
+                            <v-col>
+                                This item must be provided to the factory.
+                            </v-col>
+                        </v-row>
+                    </v-card-text>
+
+
+                    <v-card-text v-else>
                         <v-row>
                             <v-col>
                                 <v-select v-model="itemProduction.recipe" label="Recipe"
@@ -53,7 +62,7 @@
 
         <v-row justify="center">
             <v-col v-for="upstreamItemProduction in itemProduction.upstreamItemProductions" v-bind:key="upstreamItemProduction.id" cols="auto">
-                <ItemProductionComponent v-bind:itemProduction="upstreamItemProduction"></ItemProductionComponent>
+                <ItemProductionComponent v-bind:itemProduction="upstreamItemProduction" v-bind:providedItems="providedItems"></ItemProductionComponent>
             </v-col>
         </v-row>
     </div>
@@ -71,7 +80,8 @@ export default {
     name: 'ItemProductionComponent',
 
     props: {
-        itemProduction: ItemProduction
+        itemProduction: ItemProduction,
+        providedItems: Array
     },
 
     data() {
@@ -81,12 +91,10 @@ export default {
 
     watch: {
         'itemProduction.recipe': function() {
-            // TODO reference providedItems here
-            calculateItemProduction(this.itemProduction);
+            calculateItemProduction(this.itemProduction, this.providedItems);
         },
         'itemProduction.building': function() {
-            // TODO reference providedItems here
-            calculateItemProduction(this.itemProduction);
+            calculateItemProduction(this.itemProduction, this.providedItems);
         }
     },
 

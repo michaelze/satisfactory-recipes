@@ -14,10 +14,16 @@ export const uuidv4 = () => {
  * @param {Array} providedItems
  */
 export const calculateItemProduction = (itemProduction, providedItems) => {
-  let item = DATA.items.get(itemProduction.itemRequest.item);
+  let itemId = itemProduction.itemRequest.item;
+  let item = DATA.items.get(itemId);
 
   if (item.collectedItem) {
     itemProduction.setCollectedByHand();
+    return;
+  }
+
+  if (providedItems.includes(itemId)) {
+    itemProduction.setProvided();
     return;
   }
 

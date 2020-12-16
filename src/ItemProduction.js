@@ -11,6 +11,7 @@ export class ItemProduction {
         this.id = id;
         this.itemRequest = itemRequest;
         this.collectedByHand = false;
+        this.provided = false;
         this.recipe = null;
         this.building = null;
         this.numberOfProducers = 0;
@@ -18,7 +19,11 @@ export class ItemProduction {
     }
 
     setCollectedByHand() {
-        this._updateInternalState(true, null, null, 0, []);
+        this._updateInternalState(true, false, null, null, 0, []);
+    }
+
+    setProvided() {
+        this._updateInternalState(this.collectedByHand, true, null, null, 0, []);
     }
 
     /**
@@ -36,7 +41,7 @@ export class ItemProduction {
      * @param {Array} upstreamItemProductions
      */
     setProductionDetails(recipe, building, numberOfProducers, upstreamItemProductions) {
-        this._updateInternalState(false, recipe, building, numberOfProducers, upstreamItemProductions);
+        this._updateInternalState(false, false, recipe, building, numberOfProducers, upstreamItemProductions);
     }
 
     /**
@@ -46,8 +51,9 @@ export class ItemProduction {
      * @param {Number} numberOfProducers
      * @param {Array} upstreamItemProductions
      */
-    _updateInternalState(collectedByHand, recipe, building, numberOfProducers, upstreamItemProductions) {
+    _updateInternalState(collectedByHand, provided, recipe, building, numberOfProducers, upstreamItemProductions) {
         this.collectedByHand = collectedByHand;
+        this.provided = provided;
         this.recipe = recipe;
         this.building = building;
         this.numberOfProducers = numberOfProducers;
