@@ -53,7 +53,7 @@ export default {
       this.itemProduction = itemProduction;
     },
     requestedAmountPerMinute: function(newValue) {
-      this.itemProduction.setRequestedAmountPerMinute = parseFloat(newValue);
+      this.itemProduction.setRequestedAmountPerMinute(parseFloat(newValue));
       calculateItemProduction(this.itemProduction, this.providedItems);
     },
     providedItems: function(newValue) {

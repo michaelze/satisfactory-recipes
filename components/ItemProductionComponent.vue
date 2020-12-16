@@ -5,6 +5,11 @@
                 <v-card elevation="1" width="20em">
                     <v-card-title>{{ formattedRequestedAmountPerMinute }} "{{ item.name }}" per minute</v-card-title>
 
+                    <v-card-subtitle>
+                        Min. conveyor requirement: {{ transportationRequirementInput.conveyor.name }}
+                        <span v-if="transportationRequirementInput.capacityExceeded">(exceeded)</span>
+                    </v-card-subtitle>
+
                     <v-card-text v-if="itemProduction.collectedByHand === true">
                         <v-row>
                             <v-col>
@@ -34,9 +39,9 @@
                             <v-col>Amount: {{ recipe.amount  }}</v-col>
                         </v-row>
                         <v-row no-gutters>
-                            <v-col>Production time: {{ recipe.productionTime  }}, Prod/Minute: {{ recipe.productionsPerMinute }}</v-col>
+                            <v-col>Production time: {{ recipe.productionTime  }}; Prod/Minute: {{ recipe.productionsPerMinute }}</v-col>
                         </v-row>
-                        <v-row no-gutters>
+                        <v-row no-gutters v-if="recipe.ingredients.length > 0">
                             <v-col cols="4">Ingredients:</v-col>
                             <v-col>
                                 <div v-for="ingredient in recipe.ingredients">{{ ingredient.amount }}x {{ resolveItemName(ingredient.item) }}</div>
@@ -72,9 +77,9 @@
 </style>
 
 <script>
-import {DATA} from '../src/SatisfactoryDataAccess';
-import {ItemProduction} from '../src/ItemProduction';
-import {calculateItemProduction} from '../src/Tools';
+import { DATA } from '../src/SatisfactoryDataAccess';
+import { ItemProduction } from '../src/ItemProduction';
+import { calculateItemProduction, calculateTransportationRequirement } from '../src/Tools';
 
 export default {
     name: 'ItemProductionComponent',
@@ -112,6 +117,9 @@ export default {
             return this.recipe.buildings.map(building => {
                 return { id: building, name: DATA.buildings.get(building).name}
             });
+        },
+        transportationRequirementInput: function() {
+            return calculateTransportationRequirement(this.itemProduction.itemRequest.amountPerMinute);
         },
         formattedRequestedAmountPerMinute: function() {
             return Math.round(this.itemProduction.itemRequest.amountPerMinute * 100) / 100;

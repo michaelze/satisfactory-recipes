@@ -1,6 +1,7 @@
+import {DATA} from './SatisfactoryDataAccess';
 import {ItemProduction, createNewItemProduction} from './ItemProduction';
 import {ItemRequest} from './ItemRequest';
-import {DATA} from './SatisfactoryDataAccess';
+import {TransportationRequirement} from './TransportationRequirement';
 
 export const uuidv4 = () => {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
@@ -62,4 +63,21 @@ export const calculateItemProduction = (itemProduction, providedItems) => {
 
   // finally update itemProduction's details
   itemProduction.setProductionDetails(recipeId, buildingId, numberOfProducers, upstreamItemProductions);
+}
+
+/**
+ * @param {Number} itemsToTransportPerMinute
+ */
+export const calculateTransportationRequirement = (itemsToTransportPerMinute) => {
+  let capacityExceeded = false;
+  let minimumRequiredConveyor = DATA.conveyors.find((conveyor) => {
+    return conveyor.capacity >= itemsToTransportPerMinute;
+  });
+
+  if (!minimumRequiredConveyor) {
+    capacityExceeded = true;
+    minimumRequiredConveyor = DATA.conveyors[DATA.conveyors.length - 1];
+  }
+
+  return new TransportationRequirement(minimumRequiredConveyor, capacityExceeded);
 }

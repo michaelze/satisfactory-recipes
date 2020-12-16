@@ -1,5 +1,34 @@
 // use json formatting here for easier import/export from/to other tools
 export const SatisfactoryData = {
+
+    "conveyors": [
+        {
+            "id": "mk1",
+            "name": "Mk.1",
+            "capacity": "60"
+        },
+        {
+            "id": "mk2",
+            "name": "Mk.2",
+            "capacity": "120"
+        },
+        {
+            "id": "mk3",
+            "name": "Mk.3",
+            "capacity": "270"
+        },
+        {
+            "id": "mk4",
+            "name": "Mk.4",
+            "capacity": "480"
+        },
+        {
+            "id": "mk5",
+            "name": "Mk.5",
+            "capacity": "780"
+        }
+    ],
+
     "buildings": [
         {
             "id": "miner_mk1",
