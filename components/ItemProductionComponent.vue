@@ -18,14 +18,13 @@
                         </v-row>
                     </v-card-text>
 
-                    <v-card-text v-if="itemProduction.provided === true">
+                    <v-card-text v-else-if="itemProduction.provided === true">
                         <v-row>
                             <v-col>
                                 This item must be provided to the factory.
                             </v-col>
                         </v-row>
                     </v-card-text>
-
 
                     <v-card-text v-else>
                         <v-row>
