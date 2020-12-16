@@ -249,6 +249,59 @@ export const SatisfactoryData = {
             ]
         },
         {
+            "id": "copper_ingot",
+            "name": "Copper Ingot",
+            "recipes": [
+                {
+                    "id": "copper_ingot",
+                    "name": "Copper Ingot",
+                    "production_time": 2,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "copper_ore",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["smelter"]
+                },
+                {
+                    "id": "copper_ingot_pure",
+                    "name": "Pure Copper Ingot",
+                    "production_time": 24,
+                    "amount": 15,
+                    "ingredients": [
+                        {
+                            "item": "copper_ore",
+                            "amount": 6
+                        },
+                        {
+                            "item": "water",
+                            "amount": 4
+                        }
+                    ],
+                    "buildings": ["refinery"]
+                },
+                {
+                    "id": "copper_ingot_alloy",
+                    "name": "Iron Alloy Ingot",
+                    "production_time": 12,
+                    "amount": 20,
+                    "ingredients": [
+                        {
+                            "item": "copper_ore",
+                            "amount": 10
+                        },
+                        {
+                            "item": "iron_ore",
+                            "amount": 5
+                        }
+                    ],
+                    "buildings": ["foundry"]
+                }
+            ]
+        },
+        {
             "id": "iron_plate",
             "name": "Iron Plate",
             "recipes": [

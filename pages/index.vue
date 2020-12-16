@@ -36,10 +36,19 @@ export default {
     return {
       selectedItem: '',
       requestedAmountPerMinute: 60,
-      providedItems: [],
+      providedItems: ['iron_ingot', 'copper_ingot', 'steel_ingot'],
       itemProduction: null,
-      buildings: Array.from(DATA.buildings.values()),
-      items: Array.from(DATA.items.values())
+      items: Array.from(DATA.items.values()).sort((left, right) => {
+        let leftName = left.name.toUpperCase();
+        let rightName = right.name.toUpperCase();
+        if (leftName < rightName) {
+          return -1;
+        }
+        if (leftName > rightName) {
+          return 1;
+        }
+        return 0;
+      })
     };
   },
   watch: {
