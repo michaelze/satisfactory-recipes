@@ -1,20 +1,17 @@
 # satisfactory-recipes
 
+This project uses docker to execute commands that require nodejs (shell for npm install, ect. and devserver).
+For your convencience two shell scripts are provided:
+
 ## Build Setup
 
 ```bash
 # install dependencies
-$ npm install
+$ ./devshell.sh npm i
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ ./devserver.sh
 
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
+# Hint: See https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers
+#       if you are seeing errors about maximum number of inotify watchers exceeded
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
