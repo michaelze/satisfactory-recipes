@@ -38,7 +38,7 @@
                             <v-col>Amount: {{ recipe.amount  }}</v-col>
                         </v-row>
                         <v-row no-gutters>
-                            <v-col>Production time: {{ recipe.productionTime  }}; Prod/Minute: {{ recipe.productionsPerMinute }}</v-col>
+                            <v-col>Production time: {{ recipe.productionTime  }}s; Prod/Minute: {{ recipe.productionsPerMinute }}</v-col>
                         </v-row>
                         <v-row no-gutters v-if="recipe.ingredients.length > 0">
                             <v-col cols="4">Ingredients:</v-col>

@@ -66,6 +66,11 @@ export const SatisfactoryData = {
             "rate": 1
         },
         {
+            "id": "assembler",
+            "name": "Assembler",
+            "rate": 1
+        },
+        {
             "id": "water_extractor",
             "name": "Water Extractor",
             "rate": 1
@@ -421,6 +426,62 @@ export const SatisfactoryData = {
             ]
         },
         {
+            "id": "wire",
+            "name": "Wire",
+            "recipes": [
+                {
+                    "id": "wire",
+                    "name": "Wire",
+                    "production_time": 4,
+                    "amount": 2,
+                    "ingredients": [
+                        {
+                            "item": "copper_ingot",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                // TODO add fused wire
+                {
+                    "id": "iron_wire",
+                    "name": "Iron Wire",
+                    "production_time": 24,
+                    "amount": 9,
+                    "ingredients": [
+                        {
+                            "item": "iron_ingot",
+                            "amount": 5
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                }
+                // TODO add caterium wire
+            ]
+        },
+        {
+            "id": "cable",
+            "name": "Cable",
+            "recipes": [
+                {
+                    "id": "cable",
+                    "name": "Cable",
+                    "production_time": 2,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "wire",
+                            "amount": 2
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                }
+                // TODO add coated cable
+                // TODO add rubber cable
+                // TODO add quickwire cable
+            ]
+        },
+        {
             "id": "screw",
             "name": "Screw",
             "recipes": [
@@ -538,6 +599,169 @@ export const SatisfactoryData = {
                     "ingredients": [],
                     "buildings": ["water_extractor"]
                 }
+            ]
+        },
+        {
+            "id": "reinforced_iron_plate",
+            "name": "Reinforced Iron Plate",
+            "recipes": [
+                {
+                    "id": "reinforced_iron_plate",
+                    "name": "Reinforced Iron Plate",
+                    "production_time": 12,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "iron_plate",
+                            "amount": 6
+                        },
+                        {
+                            "item": "screw",
+                            "amount": 12
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                },
+                // TODO add adhered iron plate
+                {
+                    "id": "bolted_iron_plate",
+                    "name": "Bolted Iron Plate",
+                    "production_time": 12,
+                    "amount": 3,
+                    "ingredients": [
+                        {
+                            "item": "iron_plate",
+                            "amount": 18
+                        },
+                        {
+                            "item": "screw",
+                            "amount": 50
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                },
+                {
+                    "id": "stitched_iron_plate",
+                    "name": "Stitched Iron Plate",
+                    "production_time": 32,
+                    "amount": 3,
+                    "ingredients": [
+                        {
+                            "item": "iron_plate",
+                            "amount": 10
+                        },
+                        {
+                            "item": "wire",
+                            "amount": 20
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                }
+            ]
+        },
+        {
+            "id": "modular_frame",
+            "name": "Modular Frame",
+            "recipes": [
+                {
+                    "id": "modular_frame",
+                    "name": "Modular Frame",
+                    "production_time": 60,
+                    "amount": 2,
+                    "ingredients": [
+                        {
+                            "item": "reinforced_iron_plate",
+                            "amount": 3
+                        },
+                        {
+                            "item": "iron_rod",
+                            "amount": 12
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                },
+                {
+                    "id": "bolted_frame",
+                    "name": "Bolted Frame",
+                    "production_time": 24,
+                    "amount": 2,
+                    "ingredients": [
+                        {
+                            "item": "reinforced_iron_plate",
+                            "amount": 3
+                        },
+                        {
+                            "item": "screw",
+                            "amount": 56
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                },
+                {
+                    "id": "steeled_frame",
+                    "name": "Steeled Frame",
+                    "production_time": 60,
+                    "amount": 3,
+                    "ingredients": [
+                        {
+                            "item": "reinforced_iron_plate",
+                            "amount": 2
+                        },
+                        {
+                            "item": "steel_pipe",
+                            "amount": 10
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                }
+            ]
+        },
+        {
+            "id": "stator",
+            "name": "Stator",
+            "recipes": [
+                {
+                    "id": "stator",
+                    "name": "Stator",
+                    "production_time": 12,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "steel_pipe",
+                            "amount": 3
+                        },
+                        {
+                            "item": "wire",
+                            "amount": 8
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                }
+                // TODO add quickwire stator
+            ]
+        },
+        {
+            "id": "automated_wiring",
+            "name": "Automated Wiring",
+            "recipes": [
+                {
+                    "id": "automated_wiring",
+                    "name": "Automated Wiring",
+                    "production_time": 24,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "stator",
+                            "amount": 1
+                        },
+                        {
+                            "item": "cable",
+                            "amount": 20
+                        }
+                    ],
+                    "buildings": ["assembler"]
+                }
+                // TODO add high-speed wiring
             ]
         }
     ]
