@@ -3,12 +3,6 @@ import {ItemProduction, createNewItemProduction} from './ItemProduction';
 import {ItemRequest} from './ItemRequest';
 import {TransportationRequirement} from './TransportationRequirement';
 
-export const uuidv4 = () => {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
-}
-
 /**
  *
  * @param {ItemProduction} itemProduction
@@ -80,4 +74,25 @@ export const calculateTransportationRequirement = (itemsToTransportPerMinute) =>
   }
 
   return new TransportationRequirement(minimumRequiredConveyor, capacityExceeded);
+}
+
+/**
+ *
+ * @param {ItemProduction} itemProduction
+ * @param {String} id
+ */
+export const findItemProductionById = (itemProduction, id) => {
+  if (itemProduction.id === id) {
+    return itemProduction;
+  }
+
+  for (let i = 0; i < itemProduction.upstreamItemProductions.length; i++) {
+    let upstreamItemProduction = itemProduction.upstreamItemProductions[i];
+    let upstreamItemProductionMatchingById = findItemProductionById(upstreamItemProduction, id);
+    if (upstreamItemProductionMatchingById) {
+      return upstreamItemProductionMatchingById;
+    }
+  }
+
+  return null;
 }

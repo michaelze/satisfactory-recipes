@@ -29,7 +29,7 @@
                     <v-card-text v-else>
                         <v-row>
                             <v-col>
-                                <v-select v-model="itemProduction.recipe" label="Recipe"
+                                <v-select v-model="recipeId" label="Recipe"
                                     :disabled="item.recipes.size == 1"
                                     :items="Array.from(item.recipes.values())" item-value="id" item-text="name"></v-select>
                             </v-col>
@@ -48,7 +48,7 @@
                         </v-row>
                         <v-row>
                             <v-col cols="8">
-                                <v-select v-model="itemProduction.building" label="Building"
+                                <v-select v-model="buildingId" label="Building"
                                     :disabled="recipe.buildings.length == 1"
                                     :items="buildings" item-value="id" item-text="name"></v-select>
                             </v-col>
@@ -90,15 +90,28 @@ export default {
 
     data() {
         return {
+            itemProductionId: this.itemProduction.id,
+            recipeId: this.itemProduction.recipe,
+            buildingId: this.itemProduction.building
         };
     },
 
     watch: {
-        'itemProduction.recipe': function() {
-            calculateItemProduction(this.itemProduction, this.providedItems);
+        recipeId: function() {
+            console.log(arguments);
+            this.$store.commit('global/updateItemProductionRecipeId', {
+                itemProductionId: this.itemProductionId,
+                recipeId: this.recipeId,
+                providedItems: this.providedItems
+            });
         },
-        'itemProduction.building': function() {
-            calculateItemProduction(this.itemProduction, this.providedItems);
+        buildingId: function() {
+            console.log(arguments);
+            this.$store.commit('global/updateItemProductionBuildingId', {
+                itemProductionId: this.itemProductionId,
+                buildingId: this.buildingId,
+                providedItems: this.providedItems
+            });
         }
     },
 

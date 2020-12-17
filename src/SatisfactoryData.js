@@ -196,6 +196,36 @@ export const SatisfactoryData = {
             ]
         },
         {
+            "id": "limestone",
+            "name": "Limestone",
+            "recipes": [
+                {
+                    "id": "mining_impure",
+                    "name": "Impure Mining",
+                    "production_time": 2,
+                    "amount": 1,
+                    "ingredients": [],
+                    "buildings": ["miner_mk1", "miner_mk2", "miner_mk3"]
+                },
+                {
+                    "id": "mining_normal",
+                    "name": "Normal Mining",
+                    "production_time": 1,
+                    "amount": 1,
+                    "ingredients": [],
+                    "buildings": ["miner_mk1", "miner_mk2", "miner_mk3"]
+                },
+                {
+                    "id": "mining_pure",
+                    "name": "Pure Mining",
+                    "production_time": 0.5,
+                    "amount": 1,
+                    "ingredients": [],
+                    "buildings": ["miner_mk1", "miner_mk2", "miner_mk3"]
+                }
+            ]
+        },
+        {
             "id": "iron_ingot",
             "name": "Iron Ingot",
             "recipes": [
@@ -299,6 +329,44 @@ export const SatisfactoryData = {
                     ],
                     "buildings": ["foundry"]
                 }
+            ]
+        },
+        {
+            "id": "concrete",
+            "name": "Concrete",
+            "recipes": [
+                {
+                    "id": "concrete",
+                    "name": "Concrete",
+                    "production_time": 4,
+                    "amount": 1,
+                    "ingredients": [
+                        {
+                            "item": "limestone",
+                            "amount": 3
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                // TODO add rubber concrete
+                {
+                    "id": "wet_concrete",
+                    "name": "Wet Concrete",
+                    "production_time": 3,
+                    "amount": 4,
+                    "ingredients": [
+                        {
+                            "item": "limestone",
+                            "amount": 6
+                        },
+                        {
+                            "item": "water",
+                            "amount": 5
+                        }
+                    ],
+                    "buildings": ["refinery"]
+                }
+                // TODO add fine concrete
             ]
         },
         {

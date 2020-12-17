@@ -12,7 +12,7 @@
       </v-row>
       <v-row v-if="itemProduction">
         <v-col>
-          <ItemProductionComponent v-bind:itemProduction="itemProduction" v-bind:providedItems="providedItems"></ItemProductionComponent>
+          <ItemProductionComponent v-bind:itemProduction="itemProduction" v-bind:providedItems="providedItems" v-bind:key="itemProduction.id"></ItemProductionComponent>
         </v-col>
       </v-row>
     </v-col>
@@ -37,7 +37,6 @@ export default {
       selectedItem: '',
       requestedAmountPerMinute: 60,
       providedItems: ['iron_ingot', 'copper_ingot', 'steel_ingot'],
-      itemProduction: null,
       items: Array.from(DATA.items.values()).sort((left, right) => {
         let leftName = left.name.toUpperCase();
         let rightName = right.name.toUpperCase();
@@ -51,22 +50,30 @@ export default {
       })
     };
   },
+  computed: {
+    itemProduction: function() {
+      return this.$store.state.global.itemProduction;
+    }
+  },
   watch: {
-    selectedItem: function(newValue) {
-      if (!newValue || !this.requestedAmountPerMinute) {
-        this.itemProduction = null;
-      }
-      let itemRequest  = new ItemRequest(this.selectedItem, parseFloat(this.requestedAmountPerMinute));
-      let itemProduction = createNewItemProduction(itemRequest);
-      calculateItemProduction(itemProduction, this.providedItems);
-      this.itemProduction = itemProduction;
+    selectedItem: function() {
+      this.$store.commit('global/initItemProduction', {
+        item: this.selectedItem,
+        requestedAmountPerMinute: this.requestedAmountPerMinute,
+        providedItems: this.providedItems
+      });
     },
-    requestedAmountPerMinute: function(newValue) {
-      this.itemProduction.setRequestedAmountPerMinute(parseFloat(newValue));
-      calculateItemProduction(this.itemProduction, this.providedItems);
+    requestedAmountPerMinute: function() {
+      this.$store.commit('global/updateItemProduction', {
+        requestedAmountPerMinute: parseFloat(this.requestedAmountPerMinute),
+        providedItems: this.providedItems
+      });
     },
-    providedItems: function(newValue) {
-      calculateItemProduction(this.itemProduction, newValue)
+    providedItems: function() {
+      this.$store.commit('global/updateItemProduction', {
+        requestedAmountPerMinute: parseFloat(this.requestedAmountPerMinute),
+        providedItems: this.providedItems
+      });
     }
   }
 }

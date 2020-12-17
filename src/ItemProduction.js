@@ -1,5 +1,5 @@
 import { ItemRequest } from "./ItemRequest";
-import {uuidv4} from './Tools';
+import { v4 as uuidv4 } from 'uuid';
 
 export class ItemProduction {
 

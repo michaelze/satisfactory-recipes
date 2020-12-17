@@ -14,4 +14,6 @@ $ ./devserver.sh
 
 # Hint: See https://github.com/guard/listen/blob/master/README.md#increasing-the-amount-of-inotify-watchers
 #       if you are seeing errors about maximum number of inotify watchers exceeded
+
+# Open http://localhost:3000 in your favorite browser :)
 ```
