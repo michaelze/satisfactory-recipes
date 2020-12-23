@@ -44,7 +44,9 @@ export default {
       selectedItem: '',
       requestedAmountPerMinute: 60,
       providedItems: ['iron_ingot', 'copper_ingot', 'steel_ingot'],
-      items: Array.from(DATA.items.values()).sort((left, right) => {
+      items: Array.from(DATA.items.values()).filter(item => {
+        return !item.collectedItem;
+      }).sort((left, right) => {
         let leftName = left.name.toUpperCase();
         let rightName = right.name.toUpperCase();
         if (leftName < rightName) {
