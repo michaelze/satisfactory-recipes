@@ -43,7 +43,7 @@
                         <v-row no-gutters v-if="recipe.ingredients.length > 0">
                             <v-col cols="4">Ingredients:</v-col>
                             <v-col>
-                                <div v-for="ingredient in recipe.ingredients">{{ ingredient.amount }}x {{ resolveItemName(ingredient.item) }}</div>
+                                <div v-for="ingredient in recipe.ingredients" v-bind:key="ingredient.item">{{ ingredient.amount }}x <ItemName v-bind:itemId="ingredient.item"></ItemName></div>
                             </v-col>
                         </v-row>
                         <v-row>
@@ -98,7 +98,6 @@ export default {
 
     watch: {
         recipeId: function() {
-            console.log(arguments);
             this.$store.commit('global/updateItemProductionRecipeId', {
                 itemProductionId: this.itemProductionId,
                 recipeId: this.recipeId,
@@ -106,7 +105,6 @@ export default {
             });
         },
         buildingId: function() {
-            console.log(arguments);
             this.$store.commit('global/updateItemProductionBuildingId', {
                 itemProductionId: this.itemProductionId,
                 buildingId: this.buildingId,
@@ -138,12 +136,6 @@ export default {
         },
         formattedNumberOfProducers: function() {
             return Math.round(this.itemProduction.numberOfProducers * 100) / 100;
-        }
-    },
-
-    methods: {
-        resolveItemName: function(itemId) {
-            return DATA.items.get(itemId).name;
         }
     }
 }

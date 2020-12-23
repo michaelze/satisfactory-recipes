@@ -1,6 +1,6 @@
 import { ItemRequest } from '../src/ItemRequest';
 import { createNewItemProduction } from '../src/ItemProduction';
-import { calculateItemProduction, findItemProductionById } from '../src/Tools';
+import { calculateItemProduction, findItemProductionById, sumUpTotalLeafInput } from '../src/Tools';
 
 export const state = () => ({
     itemProduction: null
@@ -40,5 +40,14 @@ export const mutations = {
         let itemProductionToUpdate = findItemProductionById(state.itemProduction, payload.itemProductionId);
         itemProductionToUpdate.building = payload.buildingId;
         calculateItemProduction(itemProductionToUpdate, payload.providedItems);
+    }
+};
+
+export const getters = {
+    totalItemsRequiredPerMinute(state) {
+        if (state.itemProduction) {
+            return sumUpTotalLeafInput(state.itemProduction);
+        }
+        return new Map();
     }
 };

@@ -4,6 +4,13 @@
       <v-autocomplete v-model="selectedItem" label="Item" :items="items" item-text="name" item-value="id"></v-autocomplete>
       <v-text-field v-model="requestedAmountPerMinute" label="Amount per minute"></v-text-field>
       <v-autocomplete v-model="providedItems" label="Provided items" :items="items" item-text="name" item-value="id" multiple chips deletable-chips small-chips></v-autocomplete>
+      <div v-if="totalItemsRequiredPerMinute.size > 0">
+        <p>Total input required per minute</p>
+        <v-row v-for="element of totalItemsRequiredPerMinute.entries()" v-bind:key="element[0]">
+          <v-col><ItemName v-bind:itemId="element[0]"></ItemName></v-col>
+          <v-col>{{ element[1] }}</v-col>
+        </v-row>
+      </div>
     </v-col>
     <v-col>
       <v-row justify="center" align="center">
@@ -53,6 +60,9 @@ export default {
   computed: {
     itemProduction: function() {
       return this.$store.state.global.itemProduction;
+    },
+    totalItemsRequiredPerMinute: function() {
+      return this.$store.getters['global/totalItemsRequiredPerMinute'];
     }
   },
   watch: {

@@ -96,3 +96,40 @@ export const findItemProductionById = (itemProduction, id) => {
 
   return null;
 }
+
+/**
+ *
+ * @param {ItemProduction} itemProduction
+ */
+export const sumUpTotalLeafInput = (itemProduction) => {
+
+  let leafInput = new Map();
+
+
+  if (itemProduction.upstreamItemProductions.length == 0) {
+    // we are a leaf item production
+    let itemRequest = itemProduction.itemRequest;
+    updateTotalInputMap(leafInput, itemRequest.item, itemRequest.amountPerMinute);
+  }
+
+
+  itemProduction.upstreamItemProductions.forEach(upstreamItemProduction => {
+    let upstreamLeafInput = sumUpTotalLeafInput(upstreamItemProduction);
+    mergeTotalInputMap(leafInput, upstreamLeafInput);
+  });
+
+  return leafInput;
+}
+
+const updateTotalInputMap = (map, item, amountPerMinute) => {
+  if (!map.has(item)) {
+    map.set(item, 0);
+  }
+  map.set(item, map.get(item) + amountPerMinute);
+}
+
+const mergeTotalInputMap = (map, mapToMerge) => {
+  for (let iter = mapToMerge.entries(), next = iter.next(); !next.done; next = iter.next()) {
+    updateTotalInputMap(map, next.value[0], next.value[1]);
+  }
+}

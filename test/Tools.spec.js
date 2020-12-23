@@ -1,6 +1,6 @@
 import { ItemProduction } from '../src/ItemProduction';
 import { ItemRequest } from '../src/ItemRequest';
-import { calculateItemProduction, findItemProductionById } from '../src/Tools';
+import { calculateItemProduction, findItemProductionById, sumUpTotalLeafInput } from '../src/Tools';
 import { v4 as uuidv4 } from 'uuid';
 
 let ironOreProductionId = uuidv4();
