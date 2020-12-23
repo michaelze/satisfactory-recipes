@@ -81,7 +81,97 @@ export const SatisfactoryData = {
         {
             "id": "wood",
             "name": "Wood",
+            "recipes": []
+        },
+        {
+            "id": "leaves",
+            "name": "Leaves",
+            "recipes": []
+        },
+        {
+            "id": "mycelia",
+            "name": "Mycelia",
+            "recipes": []
+        },
+        {
+            "id": "alien_carapace",
+            "name": "Alien Carapace",
+            "recipes": []
+        },
+        {
+            "id": "alien_organs",
+            "name": "Alien Organs",
+            "recipes": []
+        },
+        {
+            "id": "biomass",
+            "name": "Biomass",
             "recipes": [
+                {
+                    "id": "biomass_leaves",
+                    "name": "Biomass (Leaves)",
+                    "production_time": 5,
+                    "amount": 5,
+                    "ingredients": [
+                        {
+                            "item": "leaves",
+                            "amount": 10
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "biomass_wood",
+                    "name": "Biomass (Wood)",
+                    "production_time": 4,
+                    "amount": 20,
+                    "ingredients": [
+                        {
+                            "item": "wood",
+                            "amount": 4
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "biomass_mycelia",
+                    "name": "Biomass (Mycelia)",
+                    "production_time": 4,
+                    "amount": 10,
+                    "ingredients": [
+                        {
+                            "item": "mycelia",
+                            "amount": 4
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "biomass_alien_carapace",
+                    "name": "Biomass (Alien Carapace)",
+                    "production_time": 4,
+                    "amount": 100,
+                    "ingredients": [
+                        {
+                            "item": "alien_carapace",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                },
+                {
+                    "id": "biomass_alien_organs",
+                    "name": "Biomass (Alien Organs)",
+                    "production_time": 8,
+                    "amount": 200,
+                    "ingredients": [
+                        {
+                            "item": "alien_organs",
+                            "amount": 1
+                        }
+                    ],
+                    "buildings": ["constructor"]
+                }
             ]
         },
         {
